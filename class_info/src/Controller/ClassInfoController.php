@@ -57,7 +57,20 @@ class ClassInfoController extends ControllerBase {
   }
 
   public function overviewAccess(string $class_id) {
-    return AccessResult::allowedIf(!empty($this->getClassInfo($class_id)));
+    $allowed_logins = [];
+    $class_info = $this->getClassInfo($class_id);
+    if (!empty($class_info)) {
+      $allowed_logins[] = $class_info['teacher']['login_id'];
+      foreach ($class_info['roster'] as $student) {
+        $allowed_logins[] = $student['login_id'];
+      }
+    }
+    return AccessResult::allowedIf(!empty($class_info))
+      ->andIf(
+        AccessResult::allowedIf(
+          in_array($this->currentUser()->getAccountName(), $allowed_logins)
+        )
+      );
   }
 
   public function roster(string $class_id) {
@@ -94,7 +107,13 @@ class ClassInfoController extends ControllerBase {
   }
 
   public function rosterAccess(string $class_id) {
-    return AccessResult::allowedIf(!empty($this->getClassInfo($class_id)));
+    $class_info = $this->getClassInfo($class_id);
+    return AccessResult::allowedIf(!empty($class_info))
+      ->andIf(
+        AccessResult::allowedIf(
+          $class_info['teacher']['login_id']  === $this->currentUser()->getAccountName()
+        )
+      );
   }
 
   /**
