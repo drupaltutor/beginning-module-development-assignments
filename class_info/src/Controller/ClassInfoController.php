@@ -67,9 +67,12 @@ class ClassInfoController extends ControllerBase {
     }
     return AccessResult::allowedIf(!empty($class_info))
       ->andIf(
-        AccessResult::allowedIf(
-          in_array($this->currentUser()->getAccountName(), $allowed_logins)
-        )
+        AccessResult::allowedIfHasPermission($this->currentUser(), 'view all class information')
+          ->orIf(
+            AccessResult::allowedIf(
+              in_array($this->currentUser()->getAccountName(), $allowed_logins)
+            )
+          )
       );
   }
 
@@ -110,9 +113,12 @@ class ClassInfoController extends ControllerBase {
     $class_info = $this->getClassInfo($class_id);
     return AccessResult::allowedIf(!empty($class_info))
       ->andIf(
-        AccessResult::allowedIf(
-          $class_info['teacher']['login_id']  === $this->currentUser()->getAccountName()
-        )
+        AccessResult::allowedIfHasPermission($this->currentUser(), 'view all class information')
+          ->orIf(
+            AccessResult::allowedIf(
+              $class_info['teacher']['login_id']  === $this->currentUser()->getAccountName()
+            )
+          )
       );
   }
 

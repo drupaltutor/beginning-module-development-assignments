@@ -1,0 +1,4 @@
+view all class information:
+  title: 'View all class information'
+  description: 'View class information and roster for any class'
+  restrict access: true
