@@ -5,6 +5,7 @@ namespace Drupal\class_info\Controller;
 use Drupal\class_info\ClassInfoManagerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -33,12 +34,15 @@ class ClassInfoController extends ControllerBase {
   }
 
   public function overview(string $class_id) {
+    $cache = new CacheableMetadata();
+    $cache->setCacheMaxAge(300);
     $class_info = $this->getClassInfo($class_id);
     $build = [];
     $build = [
       '#theme' => 'class_info_overview',
       '#class_info' => $class_info,
     ];
+    $cache->applyTo($build);
     return $build;
   }
 
@@ -68,6 +72,8 @@ class ClassInfoController extends ControllerBase {
   }
 
   public function roster(string $class_id) {
+    $cache = new CacheableMetadata();
+    $cache->setCacheMaxAge(300);
     $class_info = $this->getClassInfo($class_id);
     $build = [];
     $build['title'] = [
@@ -92,6 +98,7 @@ class ClassInfoController extends ControllerBase {
       '#header' => $header,
       '#rows' => $rows,
     ];
+    $cache->applyTo($build);
     return $build;
   }
 
