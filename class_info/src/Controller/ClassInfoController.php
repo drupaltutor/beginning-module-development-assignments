@@ -36,6 +36,7 @@ class ClassInfoController extends ControllerBase {
   public function overview(string $class_id) {
     $cache = new CacheableMetadata();
     $cache->setCacheMaxAge(300);
+    $cache->setCacheContexts(['user']);
     $class_info = $this->getClassInfo($class_id);
     $build = [];
     $build = [
@@ -74,6 +75,7 @@ class ClassInfoController extends ControllerBase {
   public function roster(string $class_id) {
     $cache = new CacheableMetadata();
     $cache->setCacheMaxAge(300);
+    $cache->setCacheContexts(['user']);
     $class_info = $this->getClassInfo($class_id);
     $build = [];
     $build['title'] = [
