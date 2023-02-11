@@ -1,0 +1,10 @@
+.class-info-overview {
+  border: 2px solid #eaeef0;
+  padding: 1.5rem;
+}
+.class-info-overview h2 {
+  margin-top: 0;
+}
+.class-info-overview label {
+  font-weight: bold;
+}

@@ -1,0 +1,4 @@
+class-info:
+  css:
+    component:
+      css/class-info.css: {}
