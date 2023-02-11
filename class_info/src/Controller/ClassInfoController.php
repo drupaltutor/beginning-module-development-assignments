@@ -35,18 +35,9 @@ class ClassInfoController extends ControllerBase {
   public function overview(string $class_id) {
     $class_info = $this->getClassInfo($class_id);
     $build = [];
-    $build['class'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'h2',
-      '#value' => $this->t('Course: @course', ['@course' => $class_info['id']]),
-    ];
-    $build['teacher'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'h2',
-      '#value' => $this->t('Teacher: @first_name @last_name', [
-        '@first_name' => $class_info['teacher']['first_name'],
-        '@last_name' => $class_info['teacher']['last_name'],
-      ]),
+    $build = [
+      '#theme' => 'class_info_overview',
+      '#class_info' => $class_info,
     ];
     return $build;
   }

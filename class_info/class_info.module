@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function class_info_theme($existing, $type, $theme, $path) {
+  return [
+    'class_info_overview' => [
+      'variables' => ['class_info' => NULL],
+    ]
+  ];
+}
