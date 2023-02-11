@@ -1,0 +1,7 @@
+class_info.class_overview:
+  path: '/classes/{class_id}'
+  defaults:
+    _controller: '\Drupal\class_info\Controller\ClassInfoController::overview'
+    _title_callback: '\Drupal\class_info\Controller\ClassInfoController::overviewTitle'
+  requirements:
+    _permission: 'access content'

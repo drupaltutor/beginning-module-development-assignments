@@ -1,0 +1,5 @@
+name: Class Information
+type: module
+description: A module to display class information on the intranet
+package: DrupalTutor Training
+core_version_requirement: ^10
