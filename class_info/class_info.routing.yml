@@ -4,7 +4,7 @@ class_info.class_overview:
     _controller: '\Drupal\class_info\Controller\ClassInfoController::overview'
     _title_callback: '\Drupal\class_info\Controller\ClassInfoController::overviewTitle'
   requirements:
-    _permission: 'access content'
+    _custom_access: '\Drupal\class_info\Controller\ClassInfoController::overviewAccess'
 
 class_info.class_roster:
   path: '/classes/{class_id}/roster'
@@ -12,4 +12,4 @@ class_info.class_roster:
     _controller: '\Drupal\class_info\Controller\ClassInfoController::roster'
     _title_callback: '\Drupal\class_info\Controller\ClassInfoController::rosterTitle'
   requirements:
-    _permission: 'access content'
+    _custom_access: '\Drupal\class_info\Controller\ClassInfoController::rosterAccess'
