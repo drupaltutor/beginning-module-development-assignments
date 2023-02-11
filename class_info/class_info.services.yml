@@ -1,0 +1,4 @@
+services:
+  class_info.manager:
+    class: Drupal\class_info\ClassInfoManager
+    arguments: ['@http_client']
