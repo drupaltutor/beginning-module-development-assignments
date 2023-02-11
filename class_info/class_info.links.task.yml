@@ -1,0 +1,10 @@
+class_info.class_overview:
+  title: 'Information'
+  route_name: class_info.class_overview
+  base_route: class_info.class_overview
+
+class_info.class_roster:
+  title: 'Roster'
+  route_name: class_info.class_roster
+  base_route: class_info.class_overview
+  weight: 10
