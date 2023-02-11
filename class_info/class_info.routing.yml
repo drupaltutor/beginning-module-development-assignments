@@ -5,3 +5,11 @@ class_info.class_overview:
     _title_callback: '\Drupal\class_info\Controller\ClassInfoController::overviewTitle'
   requirements:
     _permission: 'access content'
+
+class_info.class_roster:
+  path: '/classes/{class_id}/roster'
+  defaults:
+    _controller: '\Drupal\class_info\Controller\ClassInfoController::roster'
+    _title_callback: '\Drupal\class_info\Controller\ClassInfoController::rosterTitle'
+  requirements:
+    _permission: 'access content'
